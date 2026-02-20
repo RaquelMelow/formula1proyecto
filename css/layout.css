@@ -1,0 +1,180 @@
+/* ===== LAYOUT: full-bleed hero y espaciado de secciones ===== */
+
+html,
+body {
+    height: 100%;
+    overflow-x: hidden;
+}
+
+/* Reglas generales para secciones: margen entre secciones y padding interno */
+section {
+    padding: 48px 24px;
+}
+
+/* ===== VARIABLES & RESET & BASE ===== */
+:root {
+    --color-bg: #484a4b;
+    --color-surface: #1c1c1c;
+    --color-primary: #e10600;
+    --color-secondary: #669bbc;
+    --color-text: #fafdd5;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Rajdhani', Arial, sans-serif;
+    background: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h1,
+h2,
+h3,
+nav,
+.btn {
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 1.5px;
+}
+
+h1 {
+    text-transform: uppercase;
+}
+
+p {
+    margin-bottom: 10px;
+}
+
+a {
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+/* ===== NAVBAR ===== */
+header {
+    background: var(--color-surface);
+    border-bottom: 3px solid var(--color-primary);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--color-text);
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: var(--color-primary);
+}
+
+/* logo SVG en el nav usando mask: elemento .logo-f1 */
+nav .logo-f1 {
+    width: 1.6rem;
+    height: 1.6rem;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 18px;
+
+    /* usar currentColor para heredar color del nav */
+    background-color: currentColor;
+
+    /* ruta relativa desde este archivo CSS -> ../img/logo.svg */
+    -webkit-mask: url('../img/logo.svg') no-repeat center / contain;
+    mask: url('../img/logo.svg') no-repeat center / contain;
+}
+
+
+/* ===== FOOTER ===== */
+/* ===== FOOTER ===== */
+
+.site-footer {
+    background: #050505;
+    color: var(--color-text);
+    padding-top: 60px;
+    border-top: 3px solid var(--color-primary);
+}
+
+.footer-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    padding-bottom: 40px;
+}
+
+.site-footer h3,
+.site-footer h4 {
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 8px;
+}
+
+.footer-links a {
+    opacity: 0.7;
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    opacity: 1;
+    color: var(--color-primary);
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 20px;
+    background: #000;
+    font-size: 0.8rem;
+    opacity: 0.7;
+}

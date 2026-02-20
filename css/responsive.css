@@ -1,0 +1,449 @@
+/* ===== RESPONSIVE BREAKPOINTS ===== */
+
+/* ocultar el toggle por defecto (solo mostrar en móvil) */
+nav .menu-toggle {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding: 40px 18px;
+        min-height: 70vh;
+    }
+
+    .hero h1 {
+        font-size: 1.5rem;
+    }
+
+    .hero h2 {
+        font-size: 1rem;
+    }
+
+    section {
+        padding: 28px 18px;
+        margin: 0;
+    }
+
+    nav ul {
+        gap: 16px;
+    }
+
+    /* mobile nav: hidden by default, shown when .nav-open */
+    /* mostrar toggle en pantallas pequeñas y colocarlo a la derecha */
+    nav {
+        position: relative;
+        padding: 0 16px;
+        /* separa el logo del borde en móvil */
+        align-items: center;
+    }
+
+    nav .menu-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        border: 0;
+        color: var(--color-text);
+        width: 44px;
+        height: 44px;
+        cursor: pointer;
+        margin-left: auto;
+        /* empuja el botón al extremo derecho */
+        padding: 0;
+    }
+
+    /* hamburger: base + two pseudo lines positioned absolutely */
+    nav .menu-toggle .hamburger {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: currentColor;
+        position: relative;
+    }
+
+    nav .menu-toggle .hamburger::before,
+    nav .menu-toggle .hamburger::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        width: 22px;
+        height: 2px;
+        background: currentColor;
+    }
+
+    nav .menu-toggle .hamburger::before {
+        top: -7px;
+    }
+
+    nav .menu-toggle .hamburger::after {
+        top: 7px;
+    }
+
+    nav ul {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--color-surface);
+        flex-direction: column;
+        display: none;
+        gap: 0;
+        padding: 8px 0;
+        z-index: 50;
+    }
+
+    nav.nav-open ul {
+        display: flex;
+    }
+
+    nav ul li {
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    nav ul li:first-child {
+        border-top: none;
+    }
+
+    /* aumentar logo en móvil para que no se vea tan pequeño y separar del borde */
+    nav .logo-f1 {
+        width: 2.2rem;
+        height: 2.2rem;
+        margin-left: 4px;
+    }
+
+    /* Next race: race card en columna */
+    .next-race {
+        padding: 40px 18px;
+    }
+
+    .next-race h2 {
+        font-size: 1.3rem;
+    }
+
+    .race-card {
+        flex-direction: column;
+        padding: 20px;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .race-image {
+        flex: 0 0 auto;
+        width: 100%;
+        height: 200px;
+    }
+
+    .race-status {
+        text-align: center;
+        order: 3;
+    }
+
+    .race-status span {
+        font-size: 2rem;
+    }
+
+    /* Sección de drivers: convertir a columna en tablets */
+    .drivers-invite {
+        flex-direction: column;
+        padding: 0;
+        gap: 0;
+        min-height: auto;
+    }
+
+    .invite-image {
+        flex: 0 0 300px;
+        width: 100%;
+    }
+
+    .invite-image img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .invite-content {
+        flex: 0 0 auto;
+        padding: 40px 20px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .invite-content h2 {
+        font-size: 1.8rem;
+    }
+
+    /* Calendar page: lista y tarjetas */
+    .calendar-list {
+        gap: 18px;
+        padding: 12px 0;
+    }
+
+    .race-card {
+        flex-direction: column;
+        text-align: left;
+        padding: 18px;
+    }
+
+    .flag-container {
+        margin-bottom: 8px;
+    }
+
+    /* mantener tamaño estático para las miniaturas de circuito en tablet */
+    .track-map {
+        width: 180px;
+        height: 100px;
+    }
+
+    .season-info {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    /* Footer responsive tablet */
+    .footer-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+        padding-bottom: 30px;
+    }
+
+    .site-footer h3 {
+        font-size: 1.1rem;
+    }
+
+    .social-icons {
+        gap: 10px;
+    }
+
+    .social-icons a {
+        padding: 6px 10px;
+        font-size: 0.7rem;
+    }
+}
+
+/* Small devices: asegurar padding cómodo y evitar desbordes en full-bleed */
+@media (max-width: 480px) {
+    .hero {
+        padding: 30px 14px;
+        min-height: 50vh;
+    }
+
+    .hero h1 {
+        font-size: 1.2rem;
+        margin-bottom: 6px;
+    }
+
+    .hero h2 {
+        font-size: 0.9rem;
+        margin-bottom: 12px;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    .info-bar {
+        padding: 16px 14px;
+    }
+
+    .info-bar h3 {
+        font-size: 0.9rem;
+    }
+
+    .season-info {
+        padding: 20px 14px;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .season-info h2 {
+        font-size: 1.4rem;
+        margin-bottom: 8px;
+    }
+
+    .season-info p {
+        font-size: 0.9rem;
+        margin-bottom: 6px;
+    }
+
+    /* Next race responsive */
+    .next-race {
+        padding: 30px 14px;
+    }
+
+    .next-race h2 {
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+    }
+
+    .race-card {
+        flex-direction: column;
+        padding: 16px;
+        gap: 16px;
+    }
+
+    .race-card::before {
+        width: 4px;
+    }
+
+    .race-image {
+        flex: 0 0 auto;
+        width: 100%;
+        height: 150px;
+    }
+
+    .race-info h3 {
+        font-size: 1.2rem;
+        margin-bottom: 6px;
+    }
+
+    .race-info p {
+        font-size: 0.85rem;
+    }
+
+    .race-status {
+        text-align: center;
+    }
+
+    .race-status span {
+        font-size: 1.6rem;
+    }
+
+    .race-status small {
+        font-size: 0.7rem;
+    }
+
+    nav ul {
+        gap: 10px;
+        font-size: 0.85rem;
+    }
+
+    .container {
+        width: 100%;
+    }
+
+    /* Sección de drivers: stack vertical en móviles pequeños */
+    .drivers-invite {
+        padding: 0;
+        gap: 0;
+        min-height: auto;
+        min-height: auto;
+    }
+
+    .invite-image {
+        flex: 0 0 200px;
+        width: 100%;
+    }
+
+    .invite-image img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .invite-content {
+        flex: 0 0 auto;
+        padding: 24px 14px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .eyebrow {
+        font-size: 0.75rem;
+        margin-bottom: 8px;
+    }
+
+    .invite-content h2 {
+        font-size: 1.3rem;
+        margin-bottom: 12px;
+    }
+
+    .invite-content p {
+        font-size: 0.85rem;
+        margin-bottom: 16px;
+    }
+
+    .btn-outline {
+        padding: 12px 24px;
+        font-size: 0.8rem;
+    }
+
+    /* Footer responsive mobile */
+    .site-footer {
+        padding-top: 40px;
+        text-align: center;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding-bottom: 24px;
+    }
+
+    .site-footer h3,
+    .site-footer h4 {
+        font-size: 0.95rem;
+        margin-bottom: 12px;
+    }
+
+    .footer-links {
+        text-align: center;
+    }
+
+    .footer-links li {
+        margin-bottom: 6px;
+    }
+
+    .footer-links a {
+        font-size: 0.85rem;
+    }
+
+    .social-icons {
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .social-icons a {
+        padding: 6px 10px;
+        font-size: 0.65rem;
+    }
+
+    .footer-bottom {
+        padding: 16px;
+        font-size: 0.7rem;
+    }
+
+    /* Calendar mobile adjustments */
+    .flag-emoji {
+        font-size: 2.6rem;
+    }
+
+    /* mobile: mantener tamaño estático (no expandir) pero permitir que quepa en pantallas muy pequeñas */
+    .track-map {
+        width: 180px;
+        height: 100px;
+        max-width: 90%;
+    }
+
+    .race-card {
+        text-align: center;
+        padding: 14px;
+    }
+}
+
+@media (min-width: 1200px) {
+    nav .logo-f1 {
+        width: 4rem;
+        height: 4rem;
+    }
+
+    .container {
+        width: 85%;
+    }
+}
