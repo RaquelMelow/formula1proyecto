@@ -225,6 +225,62 @@ nav .menu-toggle {
 }
 
 /* Small devices: asegurar padding cómodo y evitar desbordes en full-bleed */
+@media (max-width: 1024px) {
+    /* Calendar page tablet adjustments */
+    .calendar-page .calendar-container {
+        width: min(100%, 900px);
+        margin: 0 auto;
+        padding: 0 16px;
+        box-sizing: border-box;
+    }
+
+    .calendar-page .race-card {
+        gap: 22px;
+        padding: 20px;
+    }
+
+    .calendar-page .gp-name {
+        font-size: 0.98rem;
+        line-height: 1.35;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Calendar page mobile / small tablet */
+    .calendar-page .calendar-container {
+        width: 100%;
+        padding: 0 12px;
+    }
+
+    .calendar-page .calendar-list {
+        gap: 14px;
+    }
+
+    .calendar-page .race-card {
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .calendar-page .race-details {
+        width: 100%;
+    }
+
+    .calendar-page .race-details>.gp-name {
+        margin-top: 8px;
+    }
+
+    .calendar-page .map-container {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .calendar-page .track-map {
+        width: min(220px, 100%);
+        height: auto;
+        aspect-ratio: 9 / 5;
+    }
+}
+
 @media (max-width: 480px) {
     .hero {
         padding: 30px 14px;
@@ -435,6 +491,30 @@ nav .menu-toggle {
         text-align: center;
         padding: 14px;
     }
+
+    .calendar-page .race-card {
+        text-align: left;
+        padding: 14px;
+    }
+
+    .calendar-page .race-details>.country {
+        font-size: 0.78rem;
+        letter-spacing: 0.5px;
+    }
+
+    .calendar-page .gp-name {
+        font-size: 0.92rem;
+    }
+
+    .calendar-page .date {
+        font-size: 0.83rem;
+    }
+
+    .calendar-page .map-container {
+        width: 100%;
+        justify-content: center;
+        margin-top: 4px;
+    }
 }
 
 @media (min-width: 1200px) {
@@ -445,5 +525,80 @@ nav .menu-toggle {
 
     .container {
         width: 85%;
+    }
+}
+
+@media (max-width: 1024px) {
+    .drivers-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .highlight-content {
+        padding: 40px 28px;
+    }
+
+    .highlight-content h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero.hero-drivers {
+        min-height: 65vh;
+    }
+
+    .drivers-roster-section {
+        padding: 36px 18px;
+    }
+
+    .drivers-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .driver-card {
+        padding: 16px;
+    }
+
+    .drivers-highlight {
+        flex-direction: column;
+    }
+
+    .highlight-image {
+        min-height: 220px;
+    }
+
+    .highlight-content {
+        padding: 30px 18px;
+        text-align: center;
+        align-items: center;
+    }
+
+    .highlight-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .highlight-content p {
+        font-size: 0.95rem;
+        margin-bottom: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .drivers-page .section-title {
+        font-size: 1.05rem;
+    }
+
+    .driver-number {
+        font-size: 1.2rem;
+    }
+
+    .driver-card h3 {
+        font-size: 1rem;
+    }
+
+    .driver-team,
+    .driver-meta {
+        font-size: 0.85rem;
     }
 }
