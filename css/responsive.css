@@ -225,6 +225,62 @@ nav .menu-toggle {
 }
 
 /* Small devices: asegurar padding cómodo y evitar desbordes en full-bleed */
+@media (max-width: 1024px) {
+    /* Calendar page tablet adjustments */
+    .calendar-page .calendar-container {
+        width: min(100%, 900px);
+        margin: 0 auto;
+        padding: 0 16px;
+        box-sizing: border-box;
+    }
+
+    .calendar-page .race-card {
+        gap: 22px;
+        padding: 20px;
+    }
+
+    .calendar-page .gp-name {
+        font-size: 0.98rem;
+        line-height: 1.35;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Calendar page mobile / small tablet */
+    .calendar-page .calendar-container {
+        width: 100%;
+        padding: 0 12px;
+    }
+
+    .calendar-page .calendar-list {
+        gap: 14px;
+    }
+
+    .calendar-page .race-card {
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .calendar-page .race-details {
+        width: 100%;
+    }
+
+    .calendar-page .race-details>.gp-name {
+        margin-top: 8px;
+    }
+
+    .calendar-page .map-container {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .calendar-page .track-map {
+        width: min(220px, 100%);
+        height: auto;
+        aspect-ratio: 9 / 5;
+    }
+}
+
 @media (max-width: 480px) {
     .hero {
         padding: 30px 14px;
@@ -434,6 +490,30 @@ nav .menu-toggle {
     .race-card {
         text-align: center;
         padding: 14px;
+    }
+
+    .calendar-page .race-card {
+        text-align: left;
+        padding: 14px;
+    }
+
+    .calendar-page .race-details>.country {
+        font-size: 0.78rem;
+        letter-spacing: 0.5px;
+    }
+
+    .calendar-page .gp-name {
+        font-size: 0.92rem;
+    }
+
+    .calendar-page .date {
+        font-size: 0.83rem;
+    }
+
+    .calendar-page .map-container {
+        width: 100%;
+        justify-content: center;
+        margin-top: 4px;
     }
 }
 
