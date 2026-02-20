@@ -291,7 +291,6 @@
 .season-info {
     background: var(--color-surface);
     padding: 30px;
-    border-top: 4px solid gray;
     text-align: center;
     width: 100vw;
     margin-left: calc(50% - 50vw);
@@ -460,6 +459,7 @@
     background: #9a9a9a;
     z-index: 3;
 }
+
 /* ===== DRIVERS PAGE ===== */
 .hero.hero-drivers {
     background-image: none;
@@ -471,7 +471,7 @@
     content: "";
     position: absolute;
     inset: 0 0 4px 0;
-    background-image: url("../img/drivers/drivers-mclaren.jpg");
+    background-image: url("../img/hero/hero-drivers.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
