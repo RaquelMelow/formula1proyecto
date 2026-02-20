@@ -226,6 +226,7 @@ nav .menu-toggle {
 
 /* Small devices: asegurar padding cómodo y evitar desbordes en full-bleed */
 @media (max-width: 1024px) {
+
     /* Calendar page tablet adjustments */
     .calendar-page .calendar-container {
         width: min(100%, 900px);
@@ -261,6 +262,7 @@ nav .menu-toggle {
 }
 
 @media (max-width: 768px) {
+
     /* Calendar page mobile / small tablet */
     .calendar-page .calendar-container {
         width: 100%;
@@ -297,12 +299,13 @@ nav .menu-toggle {
 
     /* Drivers page mobile / small tablet */
     .drivers-page .drivers-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 14px;
     }
 
     .drivers-page .driver-card {
         padding: 16px;
+        text-align: center;
     }
 
     .drivers-page .driver-photo {
@@ -555,6 +558,11 @@ nav .menu-toggle {
     }
 
     /* Drivers page small mobile */
+    .drivers-page .drivers-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
     .drivers-page .driver-photo {
         width: min(100%, 130px);
         height: 130px;
