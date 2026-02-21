@@ -591,6 +591,7 @@
     pointer-events: none;
 }
 
+/* Filas extendidas de la tabla: ocultas por defecto */
 /* Parte extendida de la tabla: oculta por defecto */
 .drivers-standings-extra {
     display: none;
