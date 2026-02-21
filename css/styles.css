@@ -592,13 +592,14 @@
 }
 
 /* Filas extendidas de la tabla: ocultas por defecto */
+/* Parte extendida de la tabla: oculta por defecto */
 .drivers-standings-extra {
     display: none;
 }
 
 /* Si el toggle está activo, se muestran las filas adicionales */
 .drivers-more-toggle:checked~.drivers-standings-table-wrap .drivers-standings-extra {
-    display: table-row;
+    display: table-row-group;
 }
 
 /* Estilo del botón que dispara mostrar/ocultar pilotos */
