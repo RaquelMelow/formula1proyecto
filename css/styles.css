@@ -655,3 +655,24 @@
     margin-bottom: 24px;
     font-size: 1.05rem;
 }
+
+/* Botón transparente para destacar sin competir con el principal del Hero */
+.drivers-btn-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.btn-more-drivers {
+    padding: 10px 25px;
+    background-color: #e10600;
+    color: white;
+    border: none;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-more-drivers:hover {
+    opacity: 0.85;
+}

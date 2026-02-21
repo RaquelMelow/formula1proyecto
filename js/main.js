@@ -1,6 +1,6 @@
-// Toggle del menú móvil
 // Load HTML components into placeholders and initialize behaviors
 document.addEventListener('DOMContentLoaded', function () {
+
     function loadComponent(selector, url) {
         const placeholder = document.querySelector(selector);
         if (!placeholder) return Promise.resolve();
@@ -16,18 +16,22 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // compute components path: if page is inside /pages/ then prefix with ../
-    const componentsPrefix = location.pathname.includes('/pages/') || location.pathname.includes('\\pages\\') ? '../' : '';
+    const componentsPrefix =
+        location.pathname.includes('/pages/') ||
+            location.pathname.includes('\\pages\\')
+            ? '../'
+            : '';
 
     Promise.all([
         loadComponent('#site-nav-placeholder', componentsPrefix + 'components/navbar.html'),
         loadComponent('#site-footer-placeholder', componentsPrefix + 'components/footer.html')
     ]).then(() => {
+
         // Re-bind menu toggle after injecting the nav
         const btn = document.querySelector('.menu-toggle');
         const nav = document.querySelector('nav');
-        const navList = document.querySelector('nav ul');
 
-        if (btn && nav && navList) {
+        if (btn && nav) {
             btn.addEventListener('click', function () {
                 const expanded = btn.getAttribute('aria-expanded') === 'true';
                 btn.setAttribute('aria-expanded', String(!expanded));
@@ -43,14 +47,52 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
     });
+
+    // ==============================
+    // Toggle para mostrar más pilotos
+    // ==============================
+
+    const button = document.getElementById("toggleDriversBtn");
+    const rows = document.querySelectorAll(".drivers-standings-table tbody tr");
+
+    if (button && rows.length > 0) {
+
+        let expanded = false;
+
+        // Ocultar filas desde la 11 (índice 10)
+        for (let i = 10; i < rows.length; i++) {
+            rows[i].style.display = "none";
+        }
+
+        button.addEventListener("click", function () {
+
+            expanded = !expanded;
+
+            for (let i = 10; i < rows.length; i++) {
+                rows[i].style.display = expanded ? "table-row" : "none";
+            }
+
+            button.textContent = expanded
+                ? "Ver menos pilotos"
+                : "Ver más pilotos";
+        });
+    }
+
 });
 
-// cuenta atrás para el próximo gran premio (8 de marzo de 2026 a las 4:00 AM)
-const targetDate = new Date(new Date().getFullYear(), 2, 8, 4, 0, 0); // 8 de marzo, 4:00 AM
+
+// ==============================
+// Cuenta atrás para el próximo GP
+// ==============================
+
+const targetDate = new Date(new Date().getFullYear(), 2, 8, 4, 0, 0);
 const daysSpan = document.getElementById('days');
 const label = document.getElementById('label');
 
 function updateCountdown() {
+
+    if (!daysSpan || !label) return;
+
     const now = new Date();
     const diff = targetDate - now;
 
@@ -66,7 +108,6 @@ function updateCountdown() {
     const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-    // Mostramos días y el resto como "HH:MM:SS"
     daysSpan.textContent = `${days} DÍAS`;
     label.textContent = `${hours}h ${minutes}m ${seconds}s`;
 }
