@@ -214,41 +214,56 @@
         <section class="drivers-standings-section container" aria-labelledby="drivers-standings-title">
             <h2 class="section-title" id="drivers-standings-title">Clasificación de pilotos · Season 2025</h2>
 
-            <div class="drivers-standings-table-wrap">
-                <table class="drivers-standings-table">
-                    <thead>
-                        <tr>
-                            <th>Pos.</th>
-                            <th>Driver</th>
-                            <th>Nacionalidad</th>
-                            <th>Team</th>
-                            <th class="align-right">Pts.</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>1</td><td>Lando Norris</td><td>United Kingdom</td><td>McLaren</td><td class="align-right">423</td></tr>
-                        <tr><td>2</td><td>Max Verstappen</td><td>Netherlands</td><td>Red Bull Racing</td><td class="align-right">421</td></tr>
-                        <tr><td>3</td><td>Oscar Piastri</td><td>Australia</td><td>McLaren</td><td class="align-right">410</td></tr>
-                        <tr><td>4</td><td>George Russell</td><td>United Kingdom</td><td>Mercedes</td><td class="align-right">319</td></tr>
-                        <tr><td>5</td><td>Charles Leclerc</td><td>Monaco</td><td>Ferrari</td><td class="align-right">242</td></tr>
-                        <tr><td>6</td><td>Lewis Hamilton</td><td>United Kingdom</td><td>Ferrari</td><td class="align-right">156</td></tr>
-                        <tr><td>7</td><td>Kimi Antonelli</td><td>Italy</td><td>Mercedes</td><td class="align-right">150</td></tr>
-                        <tr><td>8</td><td>Alexander Albon</td><td>Thailand</td><td>Williams</td><td class="align-right">73</td></tr>
-                        <tr><td>9</td><td>Carlos Sainz</td><td>Spain</td><td>Williams</td><td class="align-right">64</td></tr>
-                        <tr><td>10</td><td>Fernando Alonso</td><td>Spain</td><td>Aston Martin</td><td class="align-right">56</td></tr>
-                        <tr><td>11</td><td>Nico Hulkenberg</td><td>Germany</td><td>Kick Sauber</td><td class="align-right">51</td></tr>
-                        <tr><td>12</td><td>Isack Hadjar</td><td>France</td><td>Racing Bulls</td><td class="align-right">51</td></tr>
-                        <tr><td>13</td><td>Oliver Bearman</td><td>United Kingdom</td><td>Haas F1 Team</td><td class="align-right">41</td></tr>
-                        <tr><td>14</td><td>Liam Lawson</td><td>New Zealand</td><td>Racing Bulls</td><td class="align-right">38</td></tr>
-                        <tr><td>15</td><td>Esteban Ocon</td><td>France</td><td>Haas F1 Team</td><td class="align-right">38</td></tr>
-                        <tr><td>16</td><td>Lance Stroll</td><td>Canada</td><td>Aston Martin</td><td class="align-right">33</td></tr>
-                        <tr><td>17</td><td>Yuki Tsunoda</td><td>Japan</td><td>Red Bull Racing</td><td class="align-right">33</td></tr>
-                        <tr><td>18</td><td>Pierre Gasly</td><td>France</td><td>Alpine</td><td class="align-right">22</td></tr>
-                        <tr><td>19</td><td>Gabriel Bortoleto</td><td>Brazil</td><td>Kick Sauber</td><td class="align-right">19</td></tr>
-                        <tr><td>20</td><td>Franco Colapinto</td><td>Argentina</td><td>Alpine</td><td class="align-right">0</td></tr>
-                        <tr><td>21</td><td>Jack Doohan</td><td>Australia</td><td>Alpine</td><td class="align-right">0</td></tr>
-                    </tbody>
-                </table>
+            <!-- Tabla compacta: muestra top 10 y permite desplegar del 11 al 21 sin JS -->
+            <div class="drivers-standings-table-block">
+                <!-- Checkbox invisible que controla el estado expandido/colapsado -->
+                <input type="checkbox" id="drivers-more-toggle" class="drivers-more-toggle" aria-label="Mostrar más pilotos">
+
+                <div class="drivers-standings-table-wrap">
+                    <table class="drivers-standings-table">
+                        <thead>
+                            <tr>
+                                <th>Pos.</th>
+                                <th>Driver</th>
+                                <th>Nacionalidad</th>
+                                <th>Team</th>
+                                <th class="align-right">Pts.</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1</td><td>Lando Norris</td><td>United Kingdom</td><td>McLaren</td><td class="align-right">423</td></tr>
+                            <tr><td>2</td><td>Max Verstappen</td><td>Netherlands</td><td>Red Bull Racing</td><td class="align-right">421</td></tr>
+                            <tr><td>3</td><td>Oscar Piastri</td><td>Australia</td><td>McLaren</td><td class="align-right">410</td></tr>
+                            <tr><td>4</td><td>George Russell</td><td>United Kingdom</td><td>Mercedes</td><td class="align-right">319</td></tr>
+                            <tr><td>5</td><td>Charles Leclerc</td><td>Monaco</td><td>Ferrari</td><td class="align-right">242</td></tr>
+                            <tr><td>6</td><td>Lewis Hamilton</td><td>United Kingdom</td><td>Ferrari</td><td class="align-right">156</td></tr>
+                            <tr><td>7</td><td>Kimi Antonelli</td><td>Italy</td><td>Mercedes</td><td class="align-right">150</td></tr>
+                            <tr><td>8</td><td>Alexander Albon</td><td>Thailand</td><td>Williams</td><td class="align-right">73</td></tr>
+                            <tr><td>9</td><td>Carlos Sainz</td><td>Spain</td><td>Williams</td><td class="align-right">64</td></tr>
+                            <tr><td>10</td><td>Fernando Alonso</td><td>Spain</td><td>Aston Martin</td><td class="align-right">56</td></tr>
+                        </tbody>
+                        <!-- Filas extra ocultas por defecto; se muestran al activar el toggle -->
+                        <tbody class="drivers-standings-extra">
+                            <tr><td>11</td><td>Nico Hulkenberg</td><td>Germany</td><td>Kick Sauber</td><td class="align-right">51</td></tr>
+                            <tr><td>12</td><td>Isack Hadjar</td><td>France</td><td>Racing Bulls</td><td class="align-right">51</td></tr>
+                            <tr><td>13</td><td>Oliver Bearman</td><td>United Kingdom</td><td>Haas F1 Team</td><td class="align-right">41</td></tr>
+                            <tr><td>14</td><td>Liam Lawson</td><td>New Zealand</td><td>Racing Bulls</td><td class="align-right">38</td></tr>
+                            <tr><td>15</td><td>Esteban Ocon</td><td>France</td><td>Haas F1 Team</td><td class="align-right">38</td></tr>
+                            <tr><td>16</td><td>Lance Stroll</td><td>Canada</td><td>Aston Martin</td><td class="align-right">33</td></tr>
+                            <tr><td>17</td><td>Yuki Tsunoda</td><td>Japan</td><td>Red Bull Racing</td><td class="align-right">33</td></tr>
+                            <tr><td>18</td><td>Pierre Gasly</td><td>France</td><td>Alpine</td><td class="align-right">22</td></tr>
+                            <tr><td>19</td><td>Gabriel Bortoleto</td><td>Brazil</td><td>Kick Sauber</td><td class="align-right">19</td></tr>
+                            <tr><td>20</td><td>Franco Colapinto</td><td>Argentina</td><td>Alpine</td><td class="align-right">0</td></tr>
+                            <tr><td>21</td><td>Jack Doohan</td><td>Australia</td><td>Alpine</td><td class="align-right">0</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Botón visual enlazado al checkbox para mostrar/ocultar más pilotos -->
+                <label for="drivers-more-toggle" class="drivers-more-button">
+                    <span class="show-more-text">Más pilotos</span>
+                    <span class="show-less-text">Mostrar menos</span>
+                </label>
             </div>
         </section>
 
