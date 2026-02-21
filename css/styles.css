@@ -676,3 +676,158 @@
 .btn-more-drivers:hover {
     opacity: 0.85;
 }
+/* ===== TEAMS PAGE ===== */
+.hero.hero-teams {
+    background-image: none;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Fondo con la imagen hero de equipos */
+.hero.hero-teams::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 4px 0;
+    background-image: url("../img/hero/hero-teams.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: brightness(0.42) contrast(1.05);
+    z-index: 0;
+}
+
+/* Overlay para mejorar la legibilidad del texto del hero */
+.hero.hero-teams::after {
+    content: "";
+    position: absolute;
+    inset: 0 0 4px 0;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.82) 10%, rgba(225, 6, 0, 0.28) 100%);
+    z-index: 1;
+}
+
+.hero.hero-teams>* {
+    position: relative;
+    z-index: 2;
+}
+
+.teams-page .section-title {
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    font-size: 1.4rem;
+    border-left: 5px solid var(--color-primary);
+    padding-left: 12px;
+}
+
+/* Contenedor de tarjetas de equipos */
+.teams-roster-section {
+    padding-top: 56px;
+    padding-bottom: 56px;
+}
+
+.teams-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+/* Tarjeta base con degradado de fondo y elevación suave */
+.team-card {
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 12px;
+    padding: 18px;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.team-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+}
+
+/* Cabecera: nombre/pilotos a la izquierda y logo circular a la derecha */
+.team-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin-bottom: 14px;
+}
+
+.team-card h3 {
+    margin-bottom: 6px;
+    font-size: 1.22rem;
+    text-transform: uppercase;
+}
+
+.team-drivers {
+    margin: 0;
+    color: rgba(250, 253, 213, 0.82);
+    font-size: 0.95rem;
+}
+
+.team-logo {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: rgba(0, 0, 0, 0.35);
+    padding: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    flex-shrink: 0;
+}
+
+/* Imagen del coche colocada al final de cada card */
+.team-car {
+    width: 100%;
+    height: 130px;
+    object-fit: contain;
+    object-position: center;
+    filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.45));
+}
+
+/* Degradado personalizado según el color principal de cada equipo */
+.team-mclaren {
+    background: linear-gradient(130deg, rgba(255, 128, 0, 0.36), rgba(13, 16, 24, 0.95));
+}
+
+.team-ferrari {
+    background: linear-gradient(130deg, rgba(220, 0, 0, 0.34), rgba(13, 16, 24, 0.95));
+}
+
+.team-mercedes {
+    background: linear-gradient(130deg, rgba(0, 210, 190, 0.28), rgba(13, 16, 24, 0.95));
+}
+
+.team-red-bull {
+    background: linear-gradient(130deg, rgba(30, 65, 255, 0.34), rgba(13, 16, 24, 0.95));
+}
+
+.team-aston-martin {
+    background: linear-gradient(130deg, rgba(0, 111, 98, 0.34), rgba(13, 16, 24, 0.95));
+}
+
+.team-alpine {
+    background: linear-gradient(130deg, rgba(0, 144, 255, 0.32), rgba(13, 16, 24, 0.95));
+}
+
+.team-williams {
+    background: linear-gradient(130deg, rgba(0, 90, 255, 0.3), rgba(13, 16, 24, 0.95));
+}
+
+.team-rb {
+    background: linear-gradient(130deg, rgba(31, 56, 132, 0.34), rgba(13, 16, 24, 0.95));
+}
+
+.team-haas {
+    background: linear-gradient(130deg, rgba(181, 181, 181, 0.24), rgba(13, 16, 24, 0.95));
+}
+
+.team-audi {
+    background: linear-gradient(130deg, rgba(0, 159, 227, 0.3), rgba(13, 16, 24, 0.95));
+}
+
+.team-cadillac {
+    background: linear-gradient(130deg, rgba(199, 25, 44, 0.34), rgba(13, 16, 24, 0.95));
+}

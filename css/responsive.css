@@ -603,3 +603,61 @@ nav .menu-toggle {
         width: 85%;
     }
 }
+@media (max-width: 1024px) {
+
+    /* Teams page tablet adjustments */
+    .teams-page .teams-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .teams-page .team-card {
+        padding: 16px;
+    }
+
+    .teams-page .team-car {
+        height: 120px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* Teams page mobile / small tablet */
+    .teams-page .teams-roster-section {
+        padding-top: 42px;
+        padding-bottom: 42px;
+    }
+
+    .teams-page .team-header {
+        gap: 10px;
+    }
+
+    .teams-page .team-card h3 {
+        font-size: 1.08rem;
+    }
+
+    .teams-page .team-drivers {
+        font-size: 0.9rem;
+    }
+
+    .teams-page .team-logo {
+        width: 48px;
+        height: 48px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    /* Teams page small mobile */
+    .teams-page .team-card {
+        padding: 14px;
+    }
+
+    .teams-page .team-car {
+        height: 100px;
+    }
+
+    .teams-page .team-drivers {
+        font-size: 0.84rem;
+    }
+}
