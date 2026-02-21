@@ -576,69 +576,6 @@
     padding-bottom: 56px;
 }
 
-
-/* Contenedor general del bloque de clasificación con control de expansión */
-.drivers-standings-table-block {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
-/* Control oculto: guarda el estado del botón (más/menos pilotos) */
-.drivers-more-toggle {
-    position: absolute;
-    opacity: 0;
-    pointer-events: none;
-}
-
-/* Parte extendida de la tabla: oculta por defecto */
-.drivers-standings-extra {
-    display: none;
-}
-
-/* Si el toggle está activo, se muestran las filas adicionales */
-.drivers-more-toggle:checked~.drivers-standings-table-wrap .drivers-standings-extra {
-    display: table-row-group;
-}
-
-/* Estilo del botón que dispara mostrar/ocultar pilotos */
-.drivers-more-button {
-    align-self: center;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 18px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 999px;
-    color: var(--color-text);
-    text-transform: uppercase;
-    letter-spacing: 0.6px;
-    font-weight: 700;
-    font-size: 0.78rem;
-    cursor: pointer;
-    transition: border-color 0.2s ease, background-color 0.2s ease;
-}
-
-.drivers-more-button:hover {
-    border-color: var(--color-primary);
-    background: rgba(225, 6, 0, 0.1);
-}
-
-/* Texto alternativo para el estado colapsado */
-.drivers-more-button .show-less-text {
-    display: none;
-}
-
-/* Al expandir, ocultamos "Más pilotos" */
-.drivers-more-toggle:checked~.drivers-more-button .show-more-text {
-    display: none;
-}
-
-/* Al expandir, mostramos "Mostrar menos" */
-.drivers-more-toggle:checked~.drivers-more-button .show-less-text {
-    display: inline;
-}
-/* Contenedor con scroll horizontal para mantener la tabla usable en móviles */
 .drivers-standings-table-wrap {
     overflow-x: auto;
     border: 1px solid rgba(255, 255, 255, 0.12);
