@@ -51,11 +51,17 @@ document.addEventListener('DOMContentLoaded', function () {
         const btnUp = document.querySelector('.ir-arriba');
 
         if (btnUp) {
+            function getScrollTop() {
+                return window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+            }
+
             function toggleScrollTopButtonVisibility() {
-                btnUp.classList.toggle('visible', window.scrollY > 200);
+                const threshold = Math.max(80, window.innerHeight * 0.15);
+                btnUp.classList.toggle('visible', getScrollTop() > threshold);
             }
 
             window.addEventListener('scroll', toggleScrollTopButtonVisibility);
+            window.addEventListener('resize', toggleScrollTopButtonVisibility);
 
             // Evalúa estado inicial para casos en los que la página cargue ya desplazada.
             toggleScrollTopButtonVisibility();
