@@ -49,6 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         const btnUp = document.querySelector('.ir-arriba');
+        if (!btnUp) return;
 
         const scrollRoot = document.scrollingElement || document.documentElement;
 
@@ -102,7 +103,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         btnUp.addEventListener('click', scrollToTop);
-    }
     });
 
 // ==============================
