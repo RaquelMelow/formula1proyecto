@@ -3,7 +3,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function loadComponent(selector, url) {
         const placeholder = document.querySelector(selector);
-        if (!placeholder) return Promise.resolve();
+        if (!placeholder) return Promise.resolve(false);
+
         return fetch(url)
             .then(res => {
                 if (!res.ok) throw new Error('Failed to load: ' + url);
@@ -11,20 +12,70 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .then(html => {
                 placeholder.innerHTML = html;
+                return true;
+            })
+            .catch(err => {
+                console.error(err);
+                return false;
+            });
+    }
+
+    function getBasePath() {
+        const script = document.currentScript || document.querySelector('script[src*="js/main.js"]');
+        if (!script) return '';
+
+        const src = script.getAttribute('src') || '';
+        return src.includes('../') ? '../' : '';
+    }
+
+    function initScrollTopButton(btnUp) {
+        if (!btnUp) return;
+
+        window.addEventListener('scroll', function () {
+            btnUp.classList.toggle('visible', window.scrollY > 200);
+        });
+
+        btnUp.addEventListener('click', function () {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+
+    function ensureScrollTopButton(basePath) {
+        const existingButton = document.querySelector('.ir-arriba');
+        if (existingButton) {
+            initScrollTopButton(existingButton);
+            return Promise.resolve();
+        }
+
+        const placeholder = document.querySelector('#scroll-top-placeholder');
+        if (placeholder) {
+            return loadComponent('#scroll-top-placeholder', basePath + 'components/scroll-top.html')
+                .then(() => {
+                    initScrollTopButton(document.querySelector('.ir-arriba'));
+                });
+        }
+
+        return fetch(basePath + 'components/scroll-top.html')
+            .then(res => {
+                if (!res.ok) throw new Error('Failed to load: ' + (basePath + 'components/scroll-top.html'));
+                return res.text();
+            })
+            .then(html => {
+                document.body.insertAdjacentHTML('beforeend', html);
+                initScrollTopButton(document.querySelector('.ir-arriba'));
             })
             .catch(err => console.error(err));
     }
 
-    // compute components path: if page is inside /pages/ then prefix with ../
-    const componentsPrefix =
-        location.pathname.includes('/pages/') ||
-            location.pathname.includes('\\pages\\')
-            ? '../'
-            : '';
+    const componentsPrefix = getBasePath();
 
     Promise.all([
         loadComponent('#site-nav-placeholder', componentsPrefix + 'components/navbar.html'),
-        loadComponent('#site-footer-placeholder', componentsPrefix + 'components/footer.html')
+        loadComponent('#site-footer-placeholder', componentsPrefix + 'components/footer.html'),
+        ensureScrollTopButton(componentsPrefix)
     ]).then(() => {
 
         // Re-bind menu toggle after injecting the nav
@@ -52,8 +103,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // Toggle para mostrar más pilotos
     // ==============================
 
-    const button = document.getElementById("toggleDriversBtn");
-    const rows = document.querySelectorAll(".drivers-standings-table tbody tr");
+    const button = document.getElementById('toggleDriversBtn');
+    const rows = document.querySelectorAll('.drivers-standings-table tbody tr');
 
     if (button && rows.length > 0) {
 
@@ -61,20 +112,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Ocultar filas desde la 11 (índice 10)
         for (let i = 10; i < rows.length; i++) {
-            rows[i].style.display = "none";
+            rows[i].style.display = 'none';
         }
 
-        button.addEventListener("click", function () {
+        button.addEventListener('click', function () {
 
             expanded = !expanded;
 
             for (let i = 10; i < rows.length; i++) {
-                rows[i].style.display = expanded ? "table-row" : "none";
+                rows[i].style.display = expanded ? 'table-row' : 'none';
             }
 
             button.textContent = expanded
-                ? "Ver menos pilotos"
-                : "Ver más pilotos";
+                ? 'Ver menos pilotos'
+                : 'Ver más pilotos';
         });
     }
 
@@ -99,23 +150,6 @@ document.addEventListener('DOMContentLoaded', function () {
             predictionForm.reset();
         });
     }
-
-    const btnUp = document.querySelector(".ir-arriba");
-
-    if (btnUp) {
-
-        window.addEventListener("scroll", function () {
-            btnUp.classList.toggle("visible", window.scrollY > 200);
-        });
-
-        btnUp.addEventListener("click", function () {
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-        });
-    }
-
 });
 
 
@@ -135,8 +169,8 @@ function updateCountdown() {
     const diff = targetDate - now;
 
     if (diff <= 0) {
-        daysSpan.textContent = "0";
-        label.textContent = "¡YA!";
+        daysSpan.textContent = '0';
+        label.textContent = '¡YA!';
         clearInterval(interval);
         return;
     }
@@ -152,4 +186,3 @@ function updateCountdown() {
 
 const interval = setInterval(updateCountdown, 1000);
 updateCountdown();
-
