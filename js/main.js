@@ -50,98 +50,112 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const btnUp = document.querySelector('.ir-arriba');
 
-        if (btnUp) {
-            const scrollRoot = document.scrollingElement || document.documentElement;
+        const scrollRoot = document.scrollingElement || document.documentElement;
 
-            function getScrollTop() {
-                return Math.max(
-                    window.scrollY || 0,
-                    document.documentElement.scrollTop || 0,
-                    document.body.scrollTop || 0,
-                    scrollRoot.scrollTop || 0
-                );
-            }
-
-            function toggleScrollTopButtonVisibility() {
-                const threshold = Math.max(80, window.innerHeight * 0.15);
-                btnUp.classList.toggle('visible', getScrollTop() > threshold);
-            }
-
-            // Escucha scroll en window y en captura global para cubrir páginas con contenedor desplazable.
-            window.addEventListener('scroll', toggleScrollTopButtonVisibility, { passive: true });
-            document.addEventListener('scroll', toggleScrollTopButtonVisibility, { passive: true, capture: true });
-            scrollRoot.addEventListener('scroll', toggleScrollTopButtonVisibility, { passive: true });
-            window.addEventListener('resize', toggleScrollTopButtonVisibility);
-
-            // Evalúa estado inicial para casos en los que la página cargue ya desplazada.
-            toggleScrollTopButtonVisibility();
-
-            btnUp.addEventListener('click', function () {
-                window.scrollTo({
-                    top: navbar.offsetHeight, // Ajusta para que el scroll se detenga justo debajo del navbar
-                    behavior: 'smooth'
-                });
-
-                // Fallback para navegadores/contextos donde el scroll raíz no responde a window.scrollTo.
-                scrollRoot.scrollTo({
-                    top: navbar.offsetHeight,
-                    behavior: 'smooth'
-                });
-            });
+        function getScrollTop() {
+            return Math.max(
+                window.scrollY || 0,
+                document.documentElement.scrollTop || 0,
+                document.body.scrollTop || 0,
+                scrollRoot.scrollTop || 0
+            );
         }
+
+        function toggleScrollTopButtonVisibility() {
+            const threshold = Math.max(80, window.innerHeight * 0.15);
+            btnUp.classList.toggle('visible', getScrollTop() > threshold);
+        }
+
+        // Escucha scroll en window y en captura global para cubrir páginas con contenedor desplazable.
+        window.addEventListener('scroll', toggleScrollTopButtonVisibility, { passive: true });
+        document.addEventListener('scroll', toggleScrollTopButtonVisibility, { passive: true, capture: true });
+        scrollRoot.addEventListener('scroll', toggleScrollTopButtonVisibility, { passive: true });
+        window.addEventListener('resize', toggleScrollTopButtonVisibility);
+
+        // Evalúa estado inicial para casos en los que la página cargue ya desplazada.
+        toggleScrollTopButtonVisibility();
+
+        function scrollToTop() {
+            // Fuerza el top en todos los posibles roots de scroll (máxima compatibilidad).
+            scrollRoot.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+            document.body.scrollTop = 0;
+
+            // Fallback adicional para agentes que respetan sólo scrollTo(x, y).
+            if (typeof window.scrollTo === 'function') {
+                window.scrollTo(0, 0);
+            }
+
+            if (typeof scrollRoot.scrollTo === 'function') {
+                scrollRoot.scrollTo(0, 0);
+            }
+
+            if (typeof document.documentElement.scrollTo === 'function') {
+                document.documentElement.scrollTo(0, 0);
+            }
+
+            if (typeof document.body.scrollTo === 'function') {
+                document.body.scrollTo(0, 0);
+            }
+
+            toggleScrollTopButtonVisibility();
+        }
+
+        btnUp.addEventListener('click', scrollToTop);
+    }
     });
 
-    // ==============================
-    // Toggle para mostrar más pilotos
-    // ==============================
+// ==============================
+// Toggle para mostrar más pilotos
+// ==============================
 
-    const button = document.getElementById("toggleDriversBtn");
-    const rows = document.querySelectorAll(".drivers-standings-table tbody tr");
+const button = document.getElementById("toggleDriversBtn");
+const rows = document.querySelectorAll(".drivers-standings-table tbody tr");
 
-    if (button && rows.length > 0) {
+if (button && rows.length > 0) {
 
-        let expanded = false;
+    let expanded = false;
 
-        // Ocultar filas desde la 11 (índice 10)
+    // Ocultar filas desde la 11 (índice 10)
+    for (let i = 10; i < rows.length; i++) {
+        rows[i].style.display = "none";
+    }
+
+    button.addEventListener("click", function () {
+
+        expanded = !expanded;
+
         for (let i = 10; i < rows.length; i++) {
-            rows[i].style.display = "none";
+            rows[i].style.display = expanded ? "table-row" : "none";
         }
 
-        button.addEventListener("click", function () {
+        button.textContent = expanded
+            ? "Ver menos pilotos"
+            : "Ver más pilotos";
+    });
+}
 
-            expanded = !expanded;
+const predictionForm = document.getElementById('championshipPredictionForm');
+const predictionMessage = document.getElementById('predictionMessage');
 
-            for (let i = 10; i < rows.length; i++) {
-                rows[i].style.display = expanded ? "table-row" : "none";
-            }
+if (predictionForm && predictionMessage) {
+    predictionForm.addEventListener('submit', function (event) {
+        event.preventDefault();
 
-            button.textContent = expanded
-                ? "Ver menos pilotos"
-                : "Ver más pilotos";
-        });
-    }
+        const nameInput = document.getElementById('fanName');
+        const driverSelect = document.getElementById('predictedDriver');
+        const fanName = (nameInput?.value || '').trim();
+        const predictedDriver = driverSelect?.value || '';
 
-    const predictionForm = document.getElementById('championshipPredictionForm');
-    const predictionMessage = document.getElementById('predictionMessage');
+        if (!fanName || !predictedDriver) {
+            predictionMessage.textContent = 'Completa tu nombre y selecciona un piloto.';
+            return;
+        }
 
-    if (predictionForm && predictionMessage) {
-        predictionForm.addEventListener('submit', function (event) {
-            event.preventDefault();
-
-            const nameInput = document.getElementById('fanName');
-            const driverSelect = document.getElementById('predictedDriver');
-            const fanName = (nameInput?.value || '').trim();
-            const predictedDriver = driverSelect?.value || '';
-
-            if (!fanName || !predictedDriver) {
-                predictionMessage.textContent = 'Completa tu nombre y selecciona un piloto.';
-                return;
-            }
-
-            predictionMessage.textContent = `${fanName}, tu predicción por ${predictedDriver} ha sido registrada.`;
-            predictionForm.reset();
-        });
-    }
+        predictionMessage.textContent = `${fanName}, tu predicción por ${predictedDriver} ha sido registrada.`;
+        predictionForm.reset();
+    });
+}
 });
 
 
