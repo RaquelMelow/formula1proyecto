@@ -51,9 +51,14 @@ document.addEventListener('DOMContentLoaded', function () {
         const btnUp = document.querySelector('.ir-arriba');
 
         if (btnUp) {
-            window.addEventListener('scroll', function () {
+            function toggleScrollTopButtonVisibility() {
                 btnUp.classList.toggle('visible', window.scrollY > 200);
-            });
+            }
+
+            window.addEventListener('scroll', toggleScrollTopButtonVisibility);
+
+            // Evalúa estado inicial para casos en los que la página cargue ya desplazada.
+            toggleScrollTopButtonVisibility();
 
             btnUp.addEventListener('click', function () {
                 window.scrollTo({
@@ -151,4 +156,3 @@ function updateCountdown() {
 
 const interval = setInterval(updateCountdown, 1000);
 updateCountdown();
-
