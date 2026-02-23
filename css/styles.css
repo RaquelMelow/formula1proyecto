@@ -1,3 +1,17 @@
+/* ===== GLOBAL STYLES ===== */
+
+/*botón hacia arriba*/
+.ir-arriba {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.ir-arriba.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
 /* ===== HERO (visuals) ===== */
 .hero {
     /* full-bleed layout */

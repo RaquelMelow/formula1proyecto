@@ -5,39 +5,46 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>F1 2026 - Inicio</title>
 
-<!--ICONO-->
-<link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+<head>
+    <!--ICONO-->
+    <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
 
-<!--CSS-->
-<link rel="stylesheet" href="css/styles.css">
-<link rel="stylesheet" href="css/layout.css">
-<link rel="stylesheet" href="css/responsive.css">
+    <!--CSS-->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/responsive.css">
 
-<!--FUENTES-->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!--FUENTES-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link
-    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Rajdhani:wght@300;400;600&display=swap"
-    rel="stylesheet">
-
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Rajdhani:wght@300;400;600&display=swap"
+        rel="stylesheet">
 </head>
 
+<body>
+    <!-- El header se ha movido  a un componente para evitar repetirlo en cada página y facilitar su mantenimiento -->
     <header id="site-nav-placeholder"></header>
 
+    <!-- Contenido principal -->
     <main class="container">
+
+        <!-- Sección de bienvenida -->
         <section class="hero">
             <h1>FORMULA 1 WORLD CHAMPIONSHIP 2026</h1>
             <h2>La temporada comienza</h2>
             <a class="btn" href="#">Ver calendario</a>
         </section>
 
+        <!-- Sección de información de la temporada -->
         <section class="season-info">
             <h2>Nueva era 2026</h2>
             <p>Nuevos reglamentos aerodinámicos</p>
             <p>Cambios en parrilla y equipos</p>
         </section>
 
+        <!-- Sección de la próxima carrera -->
         <section class="next-race">
             <h2>Próxima carrera</h2>
 
@@ -66,6 +73,7 @@
             <h3 class="shine-text">24 carreras · 11 equipos · 22 pilotos</h3>
         </div>
 
+        <!-- Sección de pilotos -->
         <section class="drivers-invite">
             <div class="invite-image">
                 <img src="img/drivers/drivers-mclaren.jpg" alt="Pilotos de McLaren" class="drivers-photo">
@@ -84,6 +92,10 @@
 
     <!-- El footer se ha movido  a un componente para evitar repetirlo en cada página y facilitar su mantenimiento -->
     <footer id="site-footer-placeholder"></footer>
+
+    <!-- Boton hacia arriba -->
+    <button class="ir-arriba" aria-label="Subir arriba">↑</button>
+
     <script src="js/main.js"></script>
 </body>
 
