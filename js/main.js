@@ -51,16 +51,57 @@ document.addEventListener('DOMContentLoaded', function () {
         const btnUp = document.querySelector('.ir-arriba');
 
         if (btnUp) {
-            window.addEventListener('scroll', function () {
-                btnUp.classList.toggle('visible', window.scrollY > 200);
-            });
+            const scrollRoot = document.scrollingElement || document.documentElement;
 
-            btnUp.addEventListener('click', function () {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
+            function getScrollTop() {
+                return Math.max(
+                    window.scrollY || 0,
+                    document.documentElement.scrollTop || 0,
+                    document.body.scrollTop || 0,
+                    scrollRoot.scrollTop || 0
+                );
+            }
+
+            function toggleScrollTopButtonVisibility() {
+                const threshold = Math.max(80, window.innerHeight * 0.15);
+                btnUp.classList.toggle('visible', getScrollTop() > threshold);
+            }
+
+            // Escucha scroll en window y en captura global para cubrir páginas con contenedor desplazable.
+            window.addEventListener('scroll', toggleScrollTopButtonVisibility, { passive: true });
+            document.addEventListener('scroll', toggleScrollTopButtonVisibility, { passive: true, capture: true });
+            scrollRoot.addEventListener('scroll', toggleScrollTopButtonVisibility, { passive: true });
+            window.addEventListener('resize', toggleScrollTopButtonVisibility);
+
+            // Evalúa estado inicial para casos en los que la página cargue ya desplazada.
+            toggleScrollTopButtonVisibility();
+
+            function scrollToTop() {
+                const smoothTop = { top: 0, behavior: 'smooth' };
+
+                window.scrollTo(smoothTop);
+
+                if (typeof scrollRoot.scrollTo === 'function') {
+                    scrollRoot.scrollTo(smoothTop);
+                }
+
+                if (typeof document.documentElement.scrollTo === 'function') {
+                    document.documentElement.scrollTo(smoothTop);
+                }
+
+                if (typeof document.body.scrollTo === 'function') {
+                    document.body.scrollTo(smoothTop);
+                }
+
+                // Fallback forzado para entornos donde smooth scroll no actúa sobre el contenedor activo.
+                setTimeout(function () {
+                    scrollRoot.scrollTop = 0;
+                    document.documentElement.scrollTop = 0;
+                    document.body.scrollTop = 0;
+                }, 250);
+            }
+
+            btnUp.addEventListener('click', scrollToTop);
         }
     });
 
@@ -151,4 +192,3 @@ function updateCountdown() {
 
 const interval = setInterval(updateCountdown, 1000);
 updateCountdown();
-
