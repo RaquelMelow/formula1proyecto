@@ -400,6 +400,41 @@
                 <a href="./calendar.html" class="btn-outline">Ver calendario completo</a>
             </div>
         </section>
+
+        <section class="prediction-section container" aria-labelledby="prediction-title">
+            <h2 class="section-title" id="prediction-title">Predicción del campeón</h2>
+            <p class="prediction-subtitle">¿Quién crees que ganará el campeonato 2026? Déjanos tu predicción.</p>
+
+            <form class="prediction-form" id="championshipPredictionForm">
+                <div class="prediction-field">
+                    <label for="fanName">Tu nombre</label>
+                    <input type="text" id="fanName" name="fanName" placeholder="Ej: Carlos" required>
+                </div>
+
+                <div class="prediction-field">
+                    <label for="predictedDriver">Piloto campeón</label>
+                    <select id="predictedDriver" name="predictedDriver" required>
+                        <option value="" selected disabled>Selecciona un piloto</option>
+                        <option>Lando Norris</option>
+                        <option>Oscar Piastri</option>
+                        <option>Charles Leclerc</option>
+                        <option>Lewis Hamilton</option>
+                        <option>George Russell</option>
+                        <option>Fernando Alonso</option>
+                        <option>Max Verstappen</option>
+                    </select>
+                </div>
+
+                <div class="prediction-field">
+                    <label for="predictionReason">¿Por qué?</label>
+                    <textarea id="predictionReason" name="predictionReason" rows="4"
+                        placeholder="Comparte tu razón (opcional)"></textarea>
+                </div>
+
+                <button type="submit" class="btn-more-drivers">Enviar predicción</button>
+                <p class="prediction-message" id="predictionMessage" aria-live="polite"></p>
+            </form>
+        </section>
     </main>
 
     <footer id="site-footer-placeholder"></footer>
