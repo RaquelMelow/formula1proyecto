@@ -78,6 +78,28 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    const predictionForm = document.getElementById('championshipPredictionForm');
+    const predictionMessage = document.getElementById('predictionMessage');
+
+    if (predictionForm && predictionMessage) {
+        predictionForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const nameInput = document.getElementById('fanName');
+            const driverSelect = document.getElementById('predictedDriver');
+            const fanName = (nameInput?.value || '').trim();
+            const predictedDriver = driverSelect?.value || '';
+
+            if (!fanName || !predictedDriver) {
+                predictionMessage.textContent = 'Completa tu nombre y selecciona un piloto.';
+                return;
+            }
+
+            predictionMessage.textContent = `${fanName}, tu predicción por ${predictedDriver} ha sido registrada.`;
+            predictionForm.reset();
+        });
+    }
+
 });
 
 

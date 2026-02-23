@@ -677,6 +677,58 @@
     opacity: 0.85;
 }
 
+.prediction-section {
+    padding: 24px 0 64px;
+}
+
+.prediction-subtitle {
+    margin-bottom: 18px;
+    color: rgba(250, 253, 213, 0.82);
+}
+
+.prediction-form {
+    background: var(--color-surface);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    padding: 22px;
+    display: grid;
+    gap: 14px;
+}
+
+.prediction-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.prediction-field label {
+    font-weight: 600;
+    letter-spacing: 0.4px;
+}
+
+.prediction-field input,
+.prediction-field select,
+.prediction-field textarea {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    color: var(--color-text);
+    padding: 10px 12px;
+    font-family: inherit;
+}
+
+.prediction-field textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.prediction-message {
+    min-height: 1.4rem;
+    margin-top: 2px;
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
 
 /* ===== TEAMS PAGE ===== */
 .hero.hero-teams {

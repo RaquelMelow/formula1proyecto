@@ -320,6 +320,10 @@ nav .menu-toggle {
     .drivers-page .highlight-content h2 {
         font-size: 1.7rem;
     }
+
+    .drivers-page .prediction-form {
+        padding: 18px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -590,6 +594,10 @@ nav .menu-toggle {
 
     .drivers-page .highlight-content h2 {
         font-size: 1.35rem;
+    }
+
+    .drivers-page .prediction-form {
+        padding: 14px;
     }
 }
 
