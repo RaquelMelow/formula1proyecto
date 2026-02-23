@@ -49,6 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         const btnUp = document.querySelector('.ir-arriba');
+        if (!btnUp) return;
 
         if (btnUp) {
             const scrollRoot = document.scrollingElement || document.documentElement;
@@ -76,18 +77,33 @@ document.addEventListener('DOMContentLoaded', function () {
             // Evalúa estado inicial para casos en los que la página cargue ya desplazada.
             toggleScrollTopButtonVisibility();
 
-            btnUp.addEventListener('click', function () {
-                window.scrollTo({
-                    top: navbar.offsetHeight, // Ajusta para que el scroll se detenga justo debajo del navbar
-                    behavior: 'smooth'
-                });
+            function scrollToTop() {
+                // Fuerza el top en todos los posibles roots de scroll (máxima compatibilidad).
+                scrollRoot.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+                document.body.scrollTop = 0;
 
-                // Fallback para navegadores/contextos donde el scroll raíz no responde a window.scrollTo.
-                scrollRoot.scrollTo({
-                    top: navbar.offsetHeight,
-                    behavior: 'smooth'
-                });
-            });
+                // Fallback adicional para agentes que respetan sólo scrollTo(x, y).
+                if (typeof window.scrollTo === 'function') {
+                    window.scrollTo(0, 0);
+                }
+
+                if (typeof scrollRoot.scrollTo === 'function') {
+                    scrollRoot.scrollTo(0, 0);
+                }
+
+                if (typeof document.documentElement.scrollTo === 'function') {
+                    document.documentElement.scrollTo(0, 0);
+                }
+
+                if (typeof document.body.scrollTo === 'function') {
+                    document.body.scrollTo(0, 0);
+                }
+
+                toggleScrollTopButtonVisibility();
+            }
+
+            btnUp.addEventListener('click', scrollToTop);
         }
     });
 
