@@ -48,8 +48,18 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
 
-        const btnUp = document.querySelector('.ir-arriba');
-        if (!btnUp) return;
+        let btnUp = document.querySelector('.ir-arriba');
+
+        // Fallback: si el componente no se cargó por fetch/ruta, creamos el botón dinámicamente.
+        if (!btnUp) {
+            btnUp = document.createElement('button');
+            btnUp.className = 'ir-arriba';
+            btnUp.type = 'button';
+            btnUp.setAttribute('aria-label', 'Subir arriba');
+            btnUp.setAttribute('title', 'Subir arriba');
+            btnUp.innerHTML = '<span aria-hidden="true">↑</span>';
+            document.body.appendChild(btnUp);
+        }
 
         const scrollRoot = document.scrollingElement || document.documentElement;
 
@@ -84,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Fallback adicional para agentes que respetan sólo scrollTo(x, y).
             if (typeof window.scrollTo === 'function') {
-                window.scrollTo(0, 0);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
 
             if (typeof scrollRoot.scrollTo === 'function') {
