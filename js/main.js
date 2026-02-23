@@ -24,7 +24,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     Promise.all([
         loadComponent('#site-nav-placeholder', componentsPrefix + 'components/navbar.html'),
-        loadComponent('#site-footer-placeholder', componentsPrefix + 'components/footer.html')
+        loadComponent('#site-footer-placeholder', componentsPrefix + 'components/footer.html'),
+        loadComponent('#scroll-top-placeholder', componentsPrefix + 'components/scroll-top.html')
     ]).then(() => {
 
         // Re-bind menu toggle after injecting the nav
@@ -44,6 +45,21 @@ document.addEventListener('DOMContentLoaded', function () {
                     nav.classList.remove('nav-open');
                     btn.setAttribute('aria-expanded', 'false');
                 }
+            });
+        }
+
+        const btnUp = document.querySelector('.ir-arriba');
+
+        if (btnUp) {
+            window.addEventListener('scroll', function () {
+                btnUp.classList.toggle('visible', window.scrollY > 200);
+            });
+
+            btnUp.addEventListener('click', function () {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
             });
         }
     });
@@ -99,23 +115,6 @@ document.addEventListener('DOMContentLoaded', function () {
             predictionForm.reset();
         });
     }
-
-    const btnUp = document.querySelector(".ir-arriba");
-
-    if (btnUp) {
-
-        window.addEventListener("scroll", function () {
-            btnUp.classList.toggle("visible", window.scrollY > 200);
-        });
-
-        btnUp.addEventListener("click", function () {
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-        });
-    }
-
 });
 
 

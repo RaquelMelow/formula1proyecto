@@ -222,6 +222,14 @@ nav .menu-toggle {
         padding: 6px 10px;
         font-size: 0.7rem;
     }
+
+    .ir-arriba {
+        right: 16px;
+        bottom: 16px;
+        width: 42px;
+        height: 42px;
+        font-size: 1.2rem;
+    }
 }
 
 /* Small devices: asegurar padding cómodo y evitar desbordes en full-bleed */
