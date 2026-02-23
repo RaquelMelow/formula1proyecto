@@ -677,6 +677,13 @@
     opacity: 0.85;
 }
 
+
+/* ===== PREDICTION FORM ===== */
+
+.prediction-form-wrapper {
+    justify-items: center;
+}
+
 .prediction-section {
     padding: 24px 0 64px;
 }
@@ -687,6 +694,7 @@
 }
 
 .prediction-form {
+    width: 600px;
     background: var(--color-surface);
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 10px;
@@ -715,6 +723,11 @@
     color: var(--color-text);
     padding: 10px 12px;
     font-family: inherit;
+}
+
+#predictedDriver:valid {
+    color: var(--color-primary);
+    /* Cuando se selecciona piloto */
 }
 
 .prediction-field textarea {
