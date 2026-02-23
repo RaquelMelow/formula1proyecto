@@ -39,6 +39,7 @@
     outline: 2px solid #fff;
     outline-offset: 2px;
 }
+
 .ir-arriba:hover {
     background: #ff2a23;
 }
@@ -736,7 +737,7 @@
 }
 
 .prediction-section {
-    padding: 24px 0 64px;
+    padding: 24px 64px;
 }
 
 .prediction-subtitle {
@@ -772,7 +773,7 @@
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 6px;
-    color: var(--color-text);
+    color: var(--color-secondary);
     padding: 10px 12px;
     font-family: inherit;
 }

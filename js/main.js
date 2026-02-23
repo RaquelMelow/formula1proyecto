@@ -48,12 +48,18 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
 
+        // ==============================
+        // Botón "Subir arriba"
+        // ==============================
+
         const btnUp = document.querySelector('.ir-arriba');
         if (!btnUp) return;
 
+        // Función para obtener el scroll top actual de la página, compatible con diferentes navegadores y estructuras de DOM.
         if (btnUp) {
             const scrollRoot = document.scrollingElement || document.documentElement;
 
+            // Devuelve la posición actual del scroll vertical, considerando diferentes posibles roots de scroll.
             function getScrollTop() {
                 return Math.max(
                     window.scrollY || 0,
@@ -63,6 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 );
             }
 
+            // Muestra u oculta el botón según la posición del scroll. Se muestra al superar un umbral dinámico (15% de la altura de la ventana o 80px, lo que sea mayor).
             function toggleScrollTopButtonVisibility() {
                 const threshold = Math.max(80, window.innerHeight * 0.15);
                 btnUp.classList.toggle('visible', getScrollTop() > threshold);
