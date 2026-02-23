@@ -78,13 +78,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
             btnUp.addEventListener('click', function () {
                 window.scrollTo({
-                    top: 0,
+                    top: navbar.offsetHeight, // Ajusta para que el scroll se detenga justo debajo del navbar
                     behavior: 'smooth'
                 });
 
                 // Fallback para navegadores/contextos donde el scroll raíz no responde a window.scrollTo.
                 scrollRoot.scrollTo({
-                    top: 0,
+                    top: navbar.offsetHeight,
                     behavior: 'smooth'
                 });
             });
