@@ -51,8 +51,15 @@ document.addEventListener('DOMContentLoaded', function () {
         const btnUp = document.querySelector('.ir-arriba');
 
         if (btnUp) {
+            const scrollRoot = document.scrollingElement || document.documentElement;
+
             function getScrollTop() {
-                return window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+                return Math.max(
+                    window.scrollY || 0,
+                    document.documentElement.scrollTop || 0,
+                    document.body.scrollTop || 0,
+                    scrollRoot.scrollTop || 0
+                );
             }
 
             function toggleScrollTopButtonVisibility() {
@@ -60,7 +67,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 btnUp.classList.toggle('visible', getScrollTop() > threshold);
             }
 
-            window.addEventListener('scroll', toggleScrollTopButtonVisibility);
+            // Escucha scroll en window y en captura global para cubrir páginas con contenedor desplazable.
+            window.addEventListener('scroll', toggleScrollTopButtonVisibility, { passive: true });
+            document.addEventListener('scroll', toggleScrollTopButtonVisibility, { passive: true, capture: true });
+            scrollRoot.addEventListener('scroll', toggleScrollTopButtonVisibility, { passive: true });
             window.addEventListener('resize', toggleScrollTopButtonVisibility);
 
             // Evalúa estado inicial para casos en los que la página cargue ya desplazada.
@@ -68,6 +78,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
             btnUp.addEventListener('click', function () {
                 window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+
+                // Fallback para navegadores/contextos donde el scroll raíz no responde a window.scrollTo.
+                scrollRoot.scrollTo({
                     top: 0,
                     behavior: 'smooth'
                 });
