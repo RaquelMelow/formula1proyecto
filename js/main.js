@@ -97,6 +97,21 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
         }
+
+        const btnUp = document.querySelector('.ir-arriba');
+
+        if (btnUp) {
+            window.addEventListener('scroll', function () {
+                btnUp.classList.toggle('visible', window.scrollY > 200);
+            });
+
+            btnUp.addEventListener('click', function () {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
     });
 
     // ==============================
