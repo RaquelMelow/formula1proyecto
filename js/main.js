@@ -76,18 +76,32 @@ document.addEventListener('DOMContentLoaded', function () {
             // Evalúa estado inicial para casos en los que la página cargue ya desplazada.
             toggleScrollTopButtonVisibility();
 
-            btnUp.addEventListener('click', function () {
-                window.scrollTo({
-                    top: navbar.offsetHeight, // Ajusta para que el scroll se detenga justo debajo del navbar
-                    behavior: 'smooth'
-                });
+            function scrollToTop() {
+                const smoothTop = { top: 0, behavior: 'smooth' };
 
-                // Fallback para navegadores/contextos donde el scroll raíz no responde a window.scrollTo.
-                scrollRoot.scrollTo({
-                    top: navbar.offsetHeight,
-                    behavior: 'smooth'
-                });
-            });
+                window.scrollTo(smoothTop);
+
+                if (typeof scrollRoot.scrollTo === 'function') {
+                    scrollRoot.scrollTo(smoothTop);
+                }
+
+                if (typeof document.documentElement.scrollTo === 'function') {
+                    document.documentElement.scrollTo(smoothTop);
+                }
+
+                if (typeof document.body.scrollTo === 'function') {
+                    document.body.scrollTo(smoothTop);
+                }
+
+                // Fallback forzado para entornos donde smooth scroll no actúa sobre el contenedor activo.
+                setTimeout(function () {
+                    scrollRoot.scrollTop = 0;
+                    document.documentElement.scrollTop = 0;
+                    document.body.scrollTop = 0;
+                }, 250);
+            }
+
+            btnUp.addEventListener('click', scrollToTop);
         }
     });
 
